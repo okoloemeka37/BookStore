@@ -1,0 +1,803 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+body{
+    background-color: rgba(100, 165, 250, 0.055);
+    overflow-x: hidden;
+}
+$font_lucida:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+/* styling index page */
+li{
+ list-style: none;
+}
+
+.bg-lb{
+    background-color: rgba(41, 134, 255, 0.63);
+}
+.bg-lb:hover{
+    background-color: rgb(41, 134, 255);
+}
+.bg-red{
+    background-color: rgb(233, 42, 42, 0.63);
+}
+.bg-red:hover{
+    background-color: rgb(233, 42, 42);
+}
+
+
+.topNavBar{
+    display: flex;
+    justify-content: space-between;
+    padding:15px 55px;
+    background-color: white;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+.one{
+    margin-top: 5px;
+}
+.fName{
+    margin:0px 7px;
+    font-weight: 900;
+    font-size: 25px;
+    font-family: $font_lucida;
+}
+.sName{
+font-family: $font_lucida;
+font-weight: 100;
+font-size: 20px;
+}
+.nS{
+    padding: 10px;
+    border-radius: 25px;
+background-color: white;
+    border: none;
+    outline: none;
+    width:50%;
+    border: 1px solid rgb(202, 202, 202);
+}
+.navSearch{
+  
+background-color: unset;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-family: $font_lucida;
+    font-size: 15px;
+}
+.navSearch::placeholder{
+    font-family: $font_lucida;
+    font-size: 17px;
+}
+.to{
+    font-family: $font_lucida;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.623);
+    margin-top: 10px;
+}
+
+.sb{
+    
+    width: fit-content;
+    padding:3px 25px;
+    border-radius: 25px;
+    font-size:20px;
+    font-family: $font_lucida;
+    font-weight: 400;
+    color: white;
+    transition:all 2s ;
+    height: fit-content;
+    margin-top:5px;
+}
+
+
+.secondNav{
+    display: flex;
+    margin-left: 25%;
+    margin-top: 20px;
+}
+.secondNav li{
+    font-family: $font_lucida;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 60px;
+    
+}
+.secondNav li a{
+    transition: all .5s;
+}
+.secondNav li a:hover {
+    color: rgb(41, 134, 255);
+}
+
+//sticky navbar
+.sticky {
+    margin-left: 0%;
+    margin-top: 0px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding:20px 20px 20px 25%;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.flat {
+    margin: 20px 12%;
+    width: 80%;
+    height:80vh;
+    text-align: center;
+   display: none;
+
+}
+
+.fade{
+    animation: fade 2.5s;
+}
+@keyframes fade {
+    from{
+        opacity: .4;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.tf{
+    animation: jump 2s;
+}
+@keyframes jump {
+
+    from {
+       transform: translateY(40px);
+       opacity: .4;
+    }
+    to{
+        opacity: 1;
+    }
+
+}
+.td{
+    animation: jum 2s;
+}
+@keyframes jum {
+
+    from {
+       transform: translateY(-40px);
+       opacity: .4;
+    }
+    to{
+        opacity: 1;
+    }
+
+}
+.writes{
+    padding-top: 10%;
+}
+.tg{
+    color: rgb(0, 0, 0);
+background-color: white;
+border-radius: 20px;
+width: fit-content;
+padding: 3px 20px;
+font-family: $font_lucida;
+margin-left: 43%;
+transition: all 2s;
+}
+
+.ht{
+    font-size: 45px;
+    color: white;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin-top: 5%;
+    letter-spacing: 5px;
+    word-spacing:5px ;
+}
+.f{
+    margin-left: 42%;
+    margin-top: 30px;
+}
+//styling best selling books part
+
+.mor{
+
+margin-top: 7%;
+}
+
+.hd{
+    word-spacing: 5px;
+    letter-spacing: 3px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    margin-left: 37%;
+    margin-bottom: 5%;
+    
+}
+.tm{
+    width: fit-content;
+    display: none;
+    margin-left: 10px;
+
+}
+.tm img{
+    height: 40vh;
+    width: 100%;
+    
+}
+.net{
+   
+    background-color: white;
+}
+.title{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size:18px;
+    font-weight: 900;
+  padding: 10px 0px;
+  
+}
+.author{
+    color: grey;
+    font-weight: 400;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.sl{
+    display: flex;
+   margin-top: 10px;
+}
+
+
+.reviews{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:18px ;
+}
+.price{
+    font-weight: 900;
+    font-size:20px ;
+    margin-left: 50px;
+    color:red;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.reviews span{
+    color: red;
+}
+.gr{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    margin-left: 12%;
+    margin-right: 10%;
+}
+
+
+
+//styling this week
+
+.tw{
+    background-color: white;
+    
+    margin-top: 3%;
+    padding: 8%;
+    display: flex;
+}
+.fv{
+    width: 80%;
+    margin-top: 5%;
+}
+.ft{
+    margin-left: 3%;
+    font-size: 35px;
+}
+.ftw{
+    background-color: red;
+    padding: 20px;
+    margin-left: 3%;
+    margin-top: 20px;
+    
+}
+.nt .title{
+    color: white;
+    font-size: 40px;
+}
+.nt{
+    margin-left: 40px;
+    margin-top: 8%;
+}
+.nt .author{
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.87);
+}
+
+.pt{
+    color: white;
+    font-weight: 700;
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 30px;
+}
+.ftw img{
+    width: 33%;
+    padding: 20px;
+}
+
+ .revies{
+    color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.sd{
+    padding: 10px 20px ;
+    width: fit-content;
+    border-radius: 25px;
+    border:1px solid white;
+    font-size: 20px;
+    color: white;
+    margin-top: 20px;
+    display: block;
+}
+
+
+.sd:hover{
+    animation: den 2s;
+}
+
+@keyframes den {
+    from{
+        background-color: rgba(255, 255, 255, 0.26);
+    }
+    to{
+        background-color: white;
+    }
+}
+
+.sf{
+    display: none;
+}
+// styling penny wise
+.fl{
+    margin: 20px 12%;
+    width: 80%;
+    height:70vh;
+   
+}
+.h{
+    font-size: 21px;
+    color: white;
+   
+    margin-top: 5%;
+    letter-spacing: 5px;
+    word-spacing:5px ;
+    margin-left: 20px;
+}
+.up{
+    margin-top: -50%;
+    font-family:$font_lucida;
+    position:relative;
+    margin-left: 20%;
+}
+.ts{
+    background-color: orange;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px ;
+    width: fit-content;
+    font-size: 13px;
+    margin-left: 50px;
+}
+
+#minus{
+    width:fit-content;
+    padding:10px 20px;
+    background-color: aqua;
+    position: absolute;
+    top: 145%;
+    margin-left: 5%;
+}
+
+#plus{
+    width:fit-content;
+    padding:10px 20px;
+    background-color: aqua;
+    position: absolute;
+    top: 145%;
+  right: 0%;
+  margin-right: 5%;
+}
+.lock{
+    animation: lock 2s;
+}
+
+@keyframes lock {
+    from{
+        transform: translateX(40px);
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+.gy{
+    animation: gy .5s;
+}
+@keyframes gy {
+    from{
+        transform: translateX(20px);
+       
+    }
+    
+}
+
+.gm{
+    animation: gm .5s;
+}
+
+@keyframes gm {
+    from{
+        transform: translateX(-20px);
+       
+    }
+    
+}
+
+
+
+
+
+.rev{
+    animation: rev 1s;
+}
+@keyframes rev {
+    from{
+        transform: translateX(20px);
+        opacity: 0.5;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+
+.res{
+    animation: res 1s;
+}
+@keyframes res {
+    from{
+        transform: translateX(-20px);
+        opacity: 0.5;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+
+//styling red new penny wise
+
+.swip{
+    animation: swip .5s;
+}
+
+@keyframes swip {
+    from{
+        transform: translateX(500px);
+        
+        opacity: 0;
+       
+    }
+    to{
+        opacity: 1;
+    }
+    
+}
+
+
+
+
+// styling latest items
+.lpi{
+ padding-left: 10%;
+   padding-right: 10%;
+    background-color: white;
+}
+.df{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ma{
+    display: flex;
+
+}
+
+.tf{
+    width: fit-content;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid rgb(175, 175, 175);
+
+    margin-left: 20px;
+    text-align: center;
+}
+.nm{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto ;
+    margin-top: 30px;
+    margin-bottom: 10%;
+}
+
+.uk{
+    width: fit-content;
+  border: 1px solid rgb(201, 201, 201);
+    margin-left: 10px;
+    height: fit-content;
+
+}
+.wel{
+    height: 30vh;
+    width: 100%;
+    
+}
+.uk .net{
+    padding: 10px;
+}
+
+// news letter part
+
+.jn{
+
+ width: 70%;
+    height: 45vh;
+    margin-left: 15%;
+    margin-right: 30%;
+    background-color: rgb(0, 119, 255);
+    margin-bottom: 20%;
+    text-align: center;
+    padding: 20px;
+}
+.mv{
+ 
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 22px;
+    color: #fff;
+font-size: 43px;
+}
+.jn p{
+    font-family: "Roboto",sans-serif;
+    color: #9498A7;
+    font-size: 16px;
+    margin-bottom: 21px;
+}
+.jn  form input{
+    width: 39%;
+    height: 50px;
+    padding: 15px 24px;
+    color: #232F55;
+    font-size: 16px;
+    border-radius: 25px;
+    background: #fff;
+    border: 0;
+}
+.jn form button{
+    width: 21%;
+    height: 50px;
+    border: 0;
+    background: #FF1616;
+    border-radius: 25px;
+    padding: 15px 26px;
+    color: #fff;
+    margin-left: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+// styles for register and login form
+
+
+
+
+
+
+.registration-form form{
+    background-color: #fff;
+
+  
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+  }
+  
+  .registration-form .form-icon{
+  text-align: center;
+    background-color: #5891ff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+    line-height: 100px;
+    
+  }
+  
+  .registration-form .item{
+  border-radius: 20px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+  }
+  
+  .registration-form .create-account{
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #5791ff;
+    border: none;
+    color: white;
+    margin-top: 20px;
+  }
+  
+  .registration-form .social-media{
+    max-width: 600px;
+    background-color: #fff;
+    margin: auto;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #9fadca;
+    border-top: 1px solid #dee9ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+  }
+  
+  .registration-form .social-icons{
+    margin-top: 30px;
+    margin-bottom: 16px;
+  }
+  
+  .registration-form .social-icons a{
+    font-size: 23px;
+    margin: 0 3px;
+    color: #5691ff;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    text-align: center;
+    background-color: #fff;
+    line-height: 45px;
+  }
+  
+  .registration-form .social-icons a:hover{
+    text-decoration: none;
+    opacity: 0.6;
+  }
+  
+  @media (max-width: 576px) {
+    .registration-form form{
+        padding: 50px 20px;
+    }
+  
+    .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+    }
+  }
+  
+  .registration-form{
+  
+  width: 50%;
+  margin-left: 30%;
+  }
+  
+  .registration-form form{
+    background-color: #fff;
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 70px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+  }
+  
+  .registration-form .form-icon{
+  text-align: center;
+    background-color: #5891ff;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 50px;
+    line-height: 100px;
+  }
+  
+  .registration-form .item{
+  border-radius: 20px;
+    margin-bottom: 5px;
+    padding: 10px 20px;
+  }
+  
+  .registration-form .create-account{
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #5791ff;
+    border: none;
+    color: white;
+    margin-top: 20px;
+  }
+  
+  .registration-form .social-media{
+    max-width: 600px;
+    background-color: #fff;
+    margin: auto;
+    padding: 35px 0;
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    color: #9fadca;
+    border-top: 1px solid #dee9ff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+  }
+  
+  .registration-form .social-icons{
+    margin-top: 30px;
+    margin-bottom: 16px;
+  }
+  
+  .registration-form .social-icons a{
+    font-size: 23px;
+    margin: 0 3px;
+    color: #5691ff;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 45px;
+    display: inline-block;
+    height: 45px;
+    text-align: center;
+    background-color: #fff;
+    line-height: 45px;
+  }
+  
+  .registration-form .social-icons a:hover{
+    text-decoration: none;
+    opacity: 0.6;
+  }
+  
+  @media (max-width: 576px) {
+    .registration-form form{
+        padding: 50px 20px;
+    }
+  
+    .registration-form .form-icon{
+        width: 70px;
+        height: 70px;
+        font-size: 30px;
+        line-height: 70px;
+    }
+  }
+  .lg{
+margin-top: 10px;
+margin-left: 5%;
+  }
+  .lg a{
+    color: red;
+  }
+
+
+  //end of reg and login form
