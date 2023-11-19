@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\BooksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,13 +21,15 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['Auth'])->group(function () {
- 
+Route::middleware(['auth'])->group(function () {
+ Route::get("/dashboard",[DashBoardController::class,"show"])->name("dashboard");
+ Route::get("/users",[DashBoardController::class,'users'])->name("users");
+ Route::post("/logout",[AuthController::class,'logout'])->name('logout');
+ Route::get("/Addbook",[BooksController::class,"show"])->name("Addbook");
+ Route::delete("/delete_user/{id}",[DashBoardController::class,'delete_user']);
 });
 
-Route::get('/dashboard',function(){
-    return view('admin.dashboard');
-})->name('Ad_Dashboard');
+
 
 
 Route::middleware(['guest'])->group(function () {
@@ -38,6 +42,6 @@ Route::middleware(['guest'])->group(function () {
     })->name("register");
 
     Route::post("/register",[AuthController::class, 'register'])->name('form');
-   Route::post("/login",[AuthController::class,'register'])->name('login.form');
+   Route::post("/login",[AuthController::class,'login'])->name('login.form');
 
 });

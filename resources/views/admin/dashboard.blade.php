@@ -3,92 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Store Admin Dashboard</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
-
-
-    nav {
-      background-color: #2c3e50;
-      color: #ecf0f1;
-      padding: 10px;
-      text-align: center;
-      margin-top: 30px
-    }
-
-    nav a {
-      color: #ecf0f1;
-      text-decoration: none;
-      padding: 10px;
-      margin: 0 10px;
-    }
-
-    section {
-      padding: 20px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      border: 1px solid #bdc3c7;
-      padding: 12px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #3498db;
-      color: #fff;
-    }
-  </style>
+  <title>Admin Dashboard</title>
+<link rel="stylesheet" href="stle.css">
 </head>
 <body>
-    @extends('admin.needed')
- 
-    
-    @section('con')
-        
+  <?php $image="uploaded/".$user['image']?>
+    <header>
+<h2>DashBoard</h2>
+    <div class="admin-info">
+      <span>Welcome, {{$user["name"]}}</span>
+      <img src="{{ URL::asset($image) }}" alt="Admin Avatar">
+      
+    </div>
+  </header>
 
+  @extends('admin.sideNav')
+
+  @section('con')
  
+  @endsection
 
   <section>
-    <h2>Book List</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Book 1</td>
-          <td>Author 1</td>
-          <td>$19.99</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Book 2</td>
-          <td>Author 2</td>
-          <td>$24.99</td>
-        </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
-    </table>
+    <div class="dashboard-summary">
+      <div class="summary-box">
+        <h3>Users</h3>
+        <p>1500</p>
+      </div>
+
+      <div class="summary-box">
+        <h3>Posts</h3>
+        <p>500</p>
+      </div>
+
+      <div class="summary-box">
+        <h3>Books</h3>
+        <p>200</p>
+      </div>
+    </div>
+
+    <div class="graph-container">
+      <h2>Daily Sales Graph</h2>
+      <!-- Add your graph component here (e.g., using a chart library) -->
+    </div>
+
+  
+
+    <div class="invoice-section">
+      <h2>Invoices</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Client</th>
+            <th>Date</th>
+            <th>Invoice</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Client A</td>
+            <td>2023-11-01</td>
+            <td>#123</td>
+            <td>$200</td>
+            <td>Paid</td>
+            <td class="invoice-item-actions"><button>Delete</button></td>
+          </tr>
+          <tr>
+            <td>Client B</td>
+            <td>2023-11-02</td>
+            <td>#124</td>
+            <td>$150</td>
+            <td>Unpaid</td>
+            <td class="invoice-item-actions"><button>Delete</button></td>
+          </tr>
+          <!-- Add more invoice items as needed -->
+        </tbody>
+      </table>
+    </div>
   </section>
 
-  @endsection
 </body>
 </html>
-

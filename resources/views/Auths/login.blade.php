@@ -12,17 +12,29 @@
 <body style=" background-color: #dee9ff;">
 	@vite(['resources/css/app.css','resources/sass/app.scss', 'resources/js/app.js'])
     <div class="registration-form" >
+
+       
         <form method="POST" action="{{route('login.form')}}">
             @csrf
             <div class="form-icon">
                 <span><i class="icon icon-user"></i></span>
             </div>
-        
+            @if (session('error'))
+            <p class="text-danger">{{session('error')}}</p>
+        @endif
+
             <div class="form-group">
-                <input type="password" class="form-control item" id="password" placeholder="Password">
+            <input type="email" class="form-control item" name="email" id="email" placeholder="Email" value="{{ old('email') }}" >
+                @error('email')
+                  <p class="text-danger"> {{$message}}</p> 
+                @enderror
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="email" placeholder="Email">
+               
+                <input type="password" class="form-control item" name="password" id="password" placeholder="Password">
+                @error('password')
+                <p class="text-danger"> {{$message}}</p> 
+              @enderror
             </div>
           
             <div class="form-group">

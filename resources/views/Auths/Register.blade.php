@@ -33,7 +33,7 @@
                 @enderror
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="email" name="email" value="{{old('email')}}" placeholder="Email">
+                <input type="email" class="form-control item" id="email" name="email" value="{{old('email')}}" placeholder="Email">
                 @error('email')<p  class="text-danger">
                     {{$message}}  
                 </p>

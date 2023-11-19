@@ -23,19 +23,40 @@ class AuthController extends Controller
             'name'=>$credentials['name'],
             'email'=> $credentials['email'],
             'password'=>bcrypt($credentials['password']),
-            'image'=> $imageName
+            'image'=> $imageName,
+            'role'=>' '
        ]);
 
        // Public Folder
        $request->image->move(public_path('uploaded'), $imageName);
-       return redirect()->intended('/');
-    }
-    protected function registered($request, $user)
-    {
-        // Log in the user after registration
-        Auth::login($user);
+      
 
-        // Redirect to the intended page or any other page you want
-        return redirect(RouteServiceProvider::HOME);
+       Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']]);
+
+       // Redirect to the dashboard or any other desired page
+       return redirect()->route('dashboard');
     }
+
+
+    function login(Request $request) {
+        $credentials=$request->validate([
+            
+            'email'=>['required','email','exists:users,email'],
+            'password'=>['required'],
+           ]);
+           if(Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])){
+            return redirect()->route('dashboard');
+           }else{
+            return redirect()->route("login")->with(['error'=>"Wrong Credentials"]);
+           }
+           
+    }
+   
+
+function logout(){
+Auth::logout();
+return redirect()->route("login");
+
+}
+
 }
