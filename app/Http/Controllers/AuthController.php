@@ -34,7 +34,13 @@ class AuthController extends Controller
        Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']]);
 
        // Redirect to the dashboard or any other desired page
-       return redirect()->route('dashboard');
+       if(auth()->user()->role == 'Admin') {
+        return redirect()->route('dashboard');
+       }
+       else{
+        return redirect()->route('udashboard');
+       }
+       
     }
 
 
@@ -45,7 +51,12 @@ class AuthController extends Controller
             'password'=>['required'],
            ]);
            if(Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])){
-            return redirect()->route('dashboard');
+            if(auth()->user()->role == 'Admin') {
+                return redirect()->route('dashboard');
+               }
+               else{
+                return redirect()->route('udashboard');
+               }
            }else{
             return redirect()->route("login")->with(['error'=>"Wrong Credentials"]);
            }

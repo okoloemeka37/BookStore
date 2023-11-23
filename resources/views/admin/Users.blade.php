@@ -8,26 +8,18 @@
 </head>
 <body>
 
-  {{$image="uploaded/".$user['image']}}
-  <header>
-    {{ $user->posts_count }}
-    <div class="admin-info">
-      <span>Welcome, {{$user["name"]}}</span>
-      <img src="{{ URL::asset($image) }}" alt="Admin Avatar">
-      
-    </div>
-  </header>
+ 
   @extends('admin.sideNav')
 
   @section('con')
  
   @endsection
   <section>
-    {{$id=1}}
+    <?php $id=1 ?>
     <div class="user-section">
       <div class="split">
       <h2>User List</h2>
-<button class="add-user-btn" onclick="addUser()">Add New User</button>
+
 </div>
       <table>
         <thead>
@@ -52,7 +44,7 @@
          <td>{{$user['name']}}</td>
          <td>{{$user['email']}}</td>
         <td><a href="#">{{$user['posts_count']}}</a></td>
-       <td><a href=""> {{$user['posts_count']}} </a></td>
+       <td><a href=""> {{$user['books_count']}} </a></td>
          <td class="user-actions">
            <button class="ws">Email</button>
            <button class="red" ct={{$user["id"]}}>Delete</button>

@@ -3,13 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Posts>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Books>
  */
-class PostsFactory extends Factory
+class BooksFactory extends Factory
 {
    
 
@@ -19,15 +18,19 @@ class PostsFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {     
-         $img=['f.jpg','f2.jpg','front.jpg','grid.jpg','im.jpg','penny.jpg'];
+    {
+        $img=['f.jpg','f2.jpg','front.jpg','grid.jpg','im.jpg','penny.jpg'];
         $fi=rand(0,5);
         $rand=rand(1,20);
         return [
             
             'title' => fake()->name(),
-            'content' => fake()->text(),
+            'author' => fake()->name(),
             'user_id' =>$rand,
+            'location'=>' ',
+            'hard_copy'=>false,
+            'link'=>' ',
+            'free'=>true,
             'image'=>$img[$fi],
         ];
     }

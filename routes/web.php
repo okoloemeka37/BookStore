@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\AdminDashBoardController;
+use App\Http\Controllers\UserDashBoardController;
 use App\Http\Controllers\BooksController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,15 +19,35 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name("home");
 
+   
+   
 
 Route::middleware(['auth'])->group(function () {
- Route::get("/dashboard",[DashBoardController::class,"show"])->name("dashboard");
- Route::get("/users",[DashBoardController::class,'users'])->name("users");
+  
+    // anyAuth can access this route
+    Route::post('', [BooksController::class,'store'])->name('storeBook');
+    Route::get("/Addbook",[BooksController::class,"show"])->name("Addbook");
+
+    Route::get("/book",[BooksController::class,"Books"])->name("AllBooks");
+
+Route::middleware(['admin'])->group(function(){
+    Route::get("/dashboard",[AdminDashBoardController::class,"show"])->name("dashboard");
+    Route::get("/alusers",[AdminDashBoardController::class,'users'])->name("alusers");
+    Route::delete("/delete_user/{id}",[AdminDashBoardController::class,'delete_user']);
+
+    
+   });
+ // working on normal users 
+
+ Route::get("/udashboard",[UserDashBoardController::class,'show'])->name("udashboard");
+
+
+
+
  Route::post("/logout",[AuthController::class,'logout'])->name('logout');
  Route::get("/Addbook",[BooksController::class,"show"])->name("Addbook");
- Route::delete("/delete_user/{id}",[DashBoardController::class,'delete_user']);
 });
 
 

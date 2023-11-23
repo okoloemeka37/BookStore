@@ -34,6 +34,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function isAdmin()
+{
+    return $this->role === 'Admin'; 
+}
+
 
     /**
      * The attributes that should be cast.
@@ -48,4 +53,8 @@ class User extends Authenticatable
     public function posts(){
        return $this->hasMany(Posts::class);
     }
+
+    public function books(){
+        return $this->hasMany(Books::class);
+     }
 }

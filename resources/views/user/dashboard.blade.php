@@ -8,23 +8,22 @@
 </head>
 <body>
 
-  
-  @extends('admin.sideNav')
+    <header>
+<h2>DashBoard</h2>
+    
+  </header>
+
+  @extends('user.sideNav')
 
   @section('con')
  
   @endsection
-    <header>
-<h2>DashBoard</h2>
-   
-  </header>
-
 
   <section>
     <div class="dashboard-summary">
       <div class="summary-box">
-        <h3>Users</h3>
-        <p>{{$norm}} </p>
+        <h3>Downloads</h3>
+        <p>300</p>
       </div>
 
       <div class="summary-box">

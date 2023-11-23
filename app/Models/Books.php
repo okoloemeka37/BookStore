@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Books extends Model
 {
     use HasFactory;
+
+    protected $fillable=[
+            'title','link','user_id','genre','location','author','image','free','hard_copy'
+    ];
+
+
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
+

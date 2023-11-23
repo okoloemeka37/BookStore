@@ -5,7 +5,17 @@
     <li class="nS"><input type="text" name="search"  class="navSearch" placeholder="Search Our Library"></li>
     <li class="to"><a href="">Track Order</a></li>
     <li class="to"><a href="">Cart</a></li>
-    <li class="sb bg-lb"><a href="{{route('login')}}">Sign In</a></li>
+    @auth
+    
+    <li class="sb bg-lb"><a href="@if (auth()->user()->role =='Admin')
+        {{route('dashboard')}}
+    @else
+    {{route('udashboard')}}
+    @endif">Add Book</a></li>
+    @endauth
+    @guest
+    <li class="sb bg-lb"><a href="{{route('login')}}">Sign In</a></li>  
+    @endguest
     </div>
     
     <div class="secondNav">
