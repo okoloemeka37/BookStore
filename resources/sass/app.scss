@@ -522,6 +522,11 @@ margin-top: 7%;
 
     margin-left: 20px;
     text-align: center;
+    transition: all 2s;
+}
+.tf:hover{
+    background-color: rgb(19, 129, 255);
+    border: none;
 }
 .nm{
     display: grid;

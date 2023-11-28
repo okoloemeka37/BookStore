@@ -15,6 +15,10 @@
  
   @endsection
   <section>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      </div>
+    
     <?php $id=1 ?>
     <div class="user-section">
       <div class="split">
@@ -60,6 +64,12 @@
         </tbody>
       </table>
 
+
+      
+      <form action="">
+        @csrf
+      </form>
+
   
     </div>
   </section>
@@ -68,15 +78,17 @@
        
    
     document.querySelector(".red").addEventListener("click",function() {
+
   let gf=confirm("Are You Sure You Want to Delete User");
+  let input=document.querySelectorAll("input")[1]
  if (gf) {
   let val=document.querySelector(".red").getAttribute("ct")
-  let ct='CZHyyG8yiyJU1pkS6JDdUDpZF1R0dIzFNHMDrIVQ'
+
   fetch(`/delete_user/${val}`,{
     method:"DELETE",
     headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN':ct,
+            'X-CSRF-TOKEN':input.value,
         },
   }).then(response=>{
     if (!response.ok) {

@@ -1,5 +1,5 @@
 @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
-<nav>
+<div>
   <?php
     $user=auth()->user();
   $image="uploaded/".$user->image;
@@ -14,10 +14,10 @@
   <a href="{{route('dashboard')}}">Dashboard</a>
   <a href="{{route('alusers')}}">Users</a>
   <a href="{{route('Addbook')}}">AddBooks</a>
-  <a href="{{route('AllBooks')}}">Books</a>
+  <a href="{{route('AdminBooks')}}">Books</a>
   <a href="#">Orders</a>
   <a href="#">Customers</a>
   <a href="#">Reports</a>
   <form action="{{route('logout')}}" method="post">@csrf <button type="submit">Logout</button></form>
-</nav>
-  @yield('con')
+</div>
+ 

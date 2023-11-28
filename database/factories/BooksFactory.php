@@ -20,23 +20,36 @@ class BooksFactory extends Factory
     public function definition(): array
     {
         $img=['f.jpg','f2.jpg','front.jpg','grid.jpg','im.jpg','penny.jpg'];
+        $genre=[ "Fiction",
+        "Poetry",
+        "Nonfiction",
+        "Drama",
+        "Romance",
+        "Mystery",
+        "Thriller",
+        "Science Fiction",
+        "Fantacies",
+        "Horror",
+        "History",];
+
+        $rf=rand(0,10);
         $fi=rand(0,5);
-        $rand=rand(1,20);
+        $rand=rand(1,30);
         return [
             
             'title' => fake()->name(),
             'author' => fake()->name(),
-            'user_id' =>$rand,
-            'location'=>' ',
-            'hard_copy'=>false,
-            'link'=>' ',
-            'free'=>true,
+            'description'=>fake()->text(),
+            'user_id' =>1,
+            'location'=>'',
+            'hard_copy'=>'soft',
+            'link'=>'cambg_1.jpg',
+            'free'=>"false",
+            'price'=>"2000",
             'image'=>$img[$fi],
+            'genre'=>$genre[$rf],
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
     
 }

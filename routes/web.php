@@ -27,27 +27,36 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
   
     // anyAuth can access this route
-    Route::post('', [BooksController::class,'store'])->name('storeBook');
-    Route::get("/Addbook",[BooksController::class,"show"])->name("Addbook");
+Route::post('/storeBook', [BooksController::class,'store'])->name('storeBook');
+Route::get("/Addbook",[BooksController::class,"show"])->name("Addbook");
+Route::delete("/delete_book/{id}",[BooksController::class,'delete_book']);
+Route::get("/editForm/{id}",[BooksController::class,'edit'])->name("edit_btn");
+Route::put('/editBook/{id}', [BooksController::class,'update'])->name('editBook');
+    
 
-    Route::get("/book",[BooksController::class,"Books"])->name("AllBooks");
+
 
 Route::middleware(['admin'])->group(function(){
     Route::get("/dashboard",[AdminDashBoardController::class,"show"])->name("dashboard");
     Route::get("/alusers",[AdminDashBoardController::class,'users'])->name("alusers");
     Route::delete("/delete_user/{id}",[AdminDashBoardController::class,'delete_user']);
 
+//books time
+    Route::get("/Adminbook",[BooksController::class,"AdminBooks"])->name("AdminBooks");
+
+   
     
    });
  // working on normal users 
 
  Route::get("/udashboard",[UserDashBoardController::class,'show'])->name("udashboard");
 
-
+ 
 
 
  Route::post("/logout",[AuthController::class,'logout'])->name('logout');
- Route::get("/Addbook",[BooksController::class,"show"])->name("Addbook");
+
+ 
 });
 
 
