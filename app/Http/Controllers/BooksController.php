@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Books;
+use App\Models\Notification;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Storage;
 
 
@@ -11,10 +13,28 @@ use Illuminate\Http\Request;
 
 class BooksController extends Controller
 {
+    function AdminBooks(){
+        //selecting All Books By Admin
+        $adminBooks = Books::where("user_id","=",'1')->orderBy("id",'desc')->withTrashed()->get();
+
+        // selecting all books not by norms;
+
+        $normBooks = Books::where("user_id","!=",'1')->orderBy("id",'desc')->with('user')->withTrashed()->get();
+        return view('admin.Books',['adminBook'=>$adminBooks,'norms'=>$normBooks]);
+    }
+    function user_show_books(){
+        $user=auth()->user()->id;
+        $normBooks = Books::where("user_id","=",$user)->orderBy("id",'desc')->with('user')->withTrashed()->get();
+        return view('user.books',['books'=>$normBooks]);
+    }
     function show(){
         
         return    view('all.AddBook');
     }
+
+
+ 
+
 
   public function store(Request $request){
  $request->validate([
@@ -61,6 +81,8 @@ $free="false";
     if($request["pick"] == 'soft'){
         $bookName=$request['book']->getClientOriginalName();
 $request['book']->move(public_path('Books'), $bookName);
+    }else{
+        $bookName='';
     }
 
 
@@ -81,19 +103,15 @@ $request['book']->move(public_path('Books'), $bookName);
 
 
    //selecting All Books By Admin
-   return redirect()->route('AdminBooks')->with('success', 'Book Added successfully.');
+   if(auth()->user()->id ===0){
+    return redirect()->route('AdminBooks')->with('success', 'Book Added successfully.');
+   }else{
+    return redirect()->route('ubook')->with('success', 'Book Added successfully.');
+   }
     }
 
 
-    function AdminBooks(){
-        //selecting All Books By Admin
-        $adminBooks = Books::where("user_id","=",'1')->orderBy("id",'desc')->get();
-
-        // selecting all books not by norms;
-
-        $normBooks = Books::where("user_id","!=",'1')->orderBy("id",'desc')->with('user')->paginate(4);
-        return view('admin.Books',['adminBook'=>$adminBooks,'norms'=>$normBooks]);
-    }
+ 
 
 
     //show  edit page for Books
@@ -202,28 +220,106 @@ $bookFound=Books::find($id);
         'hard_copy'=>$copy
     ]);
 
-    return redirect()->route("AdminBooks")->with('success', 'Book updated successfully.');  
-
-
+    if(auth()->user()->id ===0){
+        return redirect()->route('AdminBooks')->with('success', 'Book Added successfully.');
+       }else{
+        return redirect()->route('ubook')->with('success', 'Book Added successfully.');
+       }
     }
 
 
     function delete_book($id){
-      $book= Books::find($id);
-      $book->destroy($id);
+      $book= Books::withTrashed()->find($id);
+      
+     if($book->user_id===auth()->user()->id){
+
+     }else{
+        Notification::create([
+            'from_id'=>auth()->user()->id,
+            'user_id'=>$book->user_id,
+            'book_id'=>$book->id,
+            'description'=>"Your Book".$book->title ."Was Permenently Deleted",
+            'status'=>"unchecked",
+            'type'=>'Deleted',
+            'for_text'=>'Book',
+            'book_title'=>$book->title
+       ]);
+     }
+   
 //remove image
 $imagePath=public_path("BookImages/".$book['image']);
-unlink($imagePath);
+//unlink($imagePath);
     
       //removing Book
 
       if(!empty($book['link'])){
         $bookPath=public_path("Books/".$book['link']);
-unlink($bookPath);
+//unlink($bookPath);
       }
-        return response()->json(["message"=>$book->link]);
+      $book->forceDelete();
+        return response()->json(["message"=>"Book Deleted Successfully"]);
     }
 
 
+
+    //remove norms book
+
+    function remove(Request $request){
+        $jsonData = json_decode($request->getContent(), true);
+        $book_id=$jsonData['book_id'];
+        $book=Books::withTrashed()->find($book_id);
+       
+        $user_id=$book['user_id'];
+        $reason=$jsonData['reason'];
+        $title=$book['title'];
+        //sending notification
+       Notification::create([
+            'from_id'=>auth()->user()->id,
+            'user_id'=>$user_id,
+            'book_id'=>$book_id,
+            'description'=>$reason,
+            'status'=>"unchecked",
+            'type'=>'Removed',
+            'for_text'=>'Book',
+            'book_title'=>$title,
+       ]);
+       // softdeleting the book
+       $book=Books::withTrashed()->find($book_id);
+       $book->delete();
+
+    }
+
+    function restore(Request $request){
+        $jsonData=json_decode($request->getContent(), true);
+
+        $book_id=$jsonData['book_id'];
+        $book=Books::withTrashed()->find($book_id);
+        $book->restore();
+
+
+         //sending notification
+       Notification::create([
+        'from_id'=>auth()->user()->id,
+        'user_id'=>$book['user_id'],
+        'subject'=>$book_id,
+        'description'=>"Your Book".$book['title']. "Was Restored",
+        'status'=>"unchecked",
+        'type'=>'Removed',
+            'for_text'=>'Book',
+            'book_title'=>$book['title'],
+   ]);
+
+       
+
+    }
+
+
+    //lifesearch
+    function search(Request $request){
+        $data=json_decode($request->getContent(),true);
+        $word=$data['value'];
+       $books= Books::where('title','like','%'. $word .'%')->get();
+        return json_encode($books);
+    }
 
 }

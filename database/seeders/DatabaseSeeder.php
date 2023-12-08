@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\Posts::factory(100)->create(['image'=>'1700004469.jpg' ]);  
-        \App\Models\Books::factory(10)->create(); 
+       //  \App\Models\Posts::factory(100)->create(['image'=>'1700004469.jpg' ]);  
+      \App\Models\Books::factory(30)->create(); 
 
-      //\App\Models\User::factory(30)->create(['image'=>'1700004469.jpg','role'=>'normals']); 
+     // \App\Models\User::factory(40)->create(); 
     }
 }
 

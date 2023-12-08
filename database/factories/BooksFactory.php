@@ -34,13 +34,13 @@ class BooksFactory extends Factory
 
         $rf=rand(0,10);
         $fi=rand(0,5);
-        $rand=rand(1,30);
+        $rand=rand(2,30);
         return [
             
             'title' => fake()->name(),
             'author' => fake()->name(),
             'description'=>fake()->text(),
-            'user_id' =>1,
+            'user_id' =>$rand,
             'location'=>'',
             'hard_copy'=>'soft',
             'link'=>'cambg_1.jpg',

@@ -21,7 +21,7 @@
    
     @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
  
-
+    
 
     <header><h2>EditBook -> {{$book->title}}</h2></header>
     

@@ -41,8 +41,10 @@
 
 <div class="mor">
     <h2 class="hd">Best Selling Books Ever</h2>
-      <button id="minus">-</button>
-      <button id="plus">+</button>
+    <i class="fa-solid fa-angle-left"  id="minus"></i>
+     
+    <i class="fa-solid fa-angle-right"id="plus"></i>
+      
     <div class="gr ">
     </div>
         <div class="tm">

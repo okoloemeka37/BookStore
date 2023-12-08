@@ -26,6 +26,10 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make('Secret'),
             'remember_token' => Str::random(10),
+            'image'=>'1700004469.jpg',
+            'role'=>'norm'
+            
+
         ];
     }
 

@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');      
-            $table->string("author");
+          
             $table->string("image");
+            $table->integer("user_id");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

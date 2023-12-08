@@ -15,10 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('link'); 
-            $table->string('poster');
+            $table->text('description'); 
+            $table->string("price");
+            $table->integer('user_id');
             $table->string("location");     
             $table->string("author");
             $table->string("image");
+            $table->string("genre");
+           
+            $table->string("free");
+            $table->string("hard_copy");
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -28,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+            Schema::dropIfExists('books');
     }
 };

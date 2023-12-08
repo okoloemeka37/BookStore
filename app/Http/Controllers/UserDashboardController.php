@@ -17,5 +17,5 @@ class UserDashBoardController extends Controller
         return    view('user.dashboard',['post'=>$post,'book'=>$book]);
     }
    
-    
+  
 }

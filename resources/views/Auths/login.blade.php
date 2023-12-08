@@ -38,7 +38,7 @@
             </div>
           
             <div class="form-group">
-                <button type="submit" class="btn btn-block w-100 create-account">Create Account</button>
+                <button type="submit" class="btn btn-block w-100 create-account">LogIn</button>
 				<p class="lg">Don't Have An Account? <a href="{{route('register')}}">SignUp</a></p>
             </div>
         </form>

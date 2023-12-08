@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
-<link rel="stylesheet" href="stle.css">
+
 </head>
 <body>
 
@@ -20,6 +20,10 @@
   @endsection
 
   <section>
+    <p class="cu" name="Dashboard"></p>
+
+
+    
     <div class="dashboard-summary">
       <div class="summary-box">
         <h3>Downloads</h3>

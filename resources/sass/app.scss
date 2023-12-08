@@ -390,18 +390,25 @@ margin-top: 7%;
 }
 
 #minus{
-    width:fit-content;
+  
     padding:10px 20px;
-    background-color: aqua;
+  
     position: absolute;
     top: 145%;
     margin-left: 5%;
+}
+#plus:hover ,#minus:hover{
+    border-radius: 50%;
+    height: 15px;
+    width: 5px;
+    background-color: rgb(50, 126, 240);
+    cursor: pointer;
 }
 
 #plus{
     width:fit-content;
     padding:10px 20px;
-    background-color: aqua;
+  
     position: absolute;
     top: 145%;
   right: 0%;

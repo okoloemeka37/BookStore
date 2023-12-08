@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Posts;
 use App\Models\Books;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,11 @@ class AdminDashBoardController extends Controller
     }
     function delete_user($id){
         User::destroy($id);
+        //deleting the users book and blogs and notification;
+        Books::where('user_id','=',$id)->forceDelete();
+       Posts::where('user_id','=',$id)->forceDelete();
+       Notification::where('user_id','=',$id)->forceDelete();
         return response()->json(["message"=>"User Deleted"]);
     }
 }
+//Miss Orie Kiehn MD

@@ -19,15 +19,15 @@
 </head>
 <body>
    
-
+  @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
     
-  @extends('admin.sideNav')
+  @extends('user.sideNav')
 
   @section('con')
  
   @endsection
 
-
+  <p class="cu" name="AddBooks"></p>
     <header><h2>AddBook</h2></header>
     
   <form id="bookForm" method="POST" action="{{route("storeBook")}}" enctype="multipart/form-data">

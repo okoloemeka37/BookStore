@@ -7,8 +7,7 @@
 <link rel="stylesheet" href="stle.css">
 </head>
 <body>
-
-  
+  @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
   @extends('admin.sideNav')
 
   @section('con')
@@ -19,6 +18,7 @@
    
   </header>
 
+  <p class="cu" name="Dashboard"></p>
 
   <section>
     <div class="dashboard-summary">
