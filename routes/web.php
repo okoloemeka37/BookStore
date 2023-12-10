@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminDashBoardController;
 use App\Http\Controllers\UserDashBoardController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\IndexPageController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,11 +19,13 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
+for pagination:: php artisan vendor:publish --tag=laravel-pagination
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("home");
+Route::get('/',[IndexPageController::class,'index'])->name("home");
+Route::get('/sort{genre}',[IndexPageController::class,'index'])->name("gen");
+//viewing single book 
+Route::get('/book{id}',[IndexPageController::class,'single'])->name("sin");
 
    
    

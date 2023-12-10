@@ -248,4 +248,3 @@ if (counter == -1) {
 },4000)
 
 
-document.querySelector(".previmg").childElementCount

@@ -34,7 +34,7 @@ class BooksFactory extends Factory
 
         $rf=rand(0,10);
         $fi=rand(0,5);
-        $rand=rand(2,30);
+        $rand=rand(9,30);
         return [
             
             'title' => fake()->name(),

@@ -1,12 +1,13 @@
 @extends('../layouts.head')
 @extends('../layouts.Nav')
 
-@section('title') Index @endsection
+@section('title') BookLib @endsection
 
 
-    
+
 @section('content')
 <script src="{{ URL::asset('script/index.js') }} "defer></script>
+
 <div class="hold">
 <div class="flat fade" style="background-image:url({{ URL::asset('images/front.jpg') }})">
     
@@ -46,7 +47,7 @@
     <i class="fa-solid fa-angle-right"id="plus"></i>
       
     <div class="gr ">
-    </div>
+</div>
         <div class="tm">
             <a href="">
                     <img src="{{ URL::asset('images/im.jpg') }}" alt="">
@@ -58,9 +59,9 @@
                         <p class="price">$150</p>
                         </div>
                         
-                </div>
+    </div>
       
-            </a>
+</a>
         </div>
 
             <div class="tm">
@@ -279,110 +280,49 @@
 
 <div class="lpi">
     <div class="df">
-        <h1>Latest Published Items</h1>
-    
-        <div class="ma">
-            <p class="tf">All</p>
-            <p class="tf">Horror</p>
-            <p class="tf">Thriller</p>
-            <p class="tf">Science Fiction</p>
-            <p class="tf">History</p>
-        </div>
+
+        <p class="tf now"><a class="ta" href="{{route('gen','All')}}">All</a></p>
+        <p class="tf"><a class="ta" href="{{route('gen','Poetry')}}">Poetry</a></p>
+       <p class="tf"><a class="ta" href="{{route('gen','Nonfiction')}}">Nonfiction</a></p>
+       <p class="tf"><a class="ta" href="{{route('gen','Drama')}}">Drama</a></p>
+        <p class="tf"><a class="ta" href="{{route('gen','Romance')}}">Romance</a></p>
+        <p class="tf"><a class="ta" href="{{route('gen','Mystery')}}">Mystery</a></p>
+        <p class="tf"><a class="ta" href="{{route('gen','Thriller')}}">Thriller</a></p>
+        <p class="tf"><a class="ta" href="{{route('gen','Fiction')}}">Fiction</a></p>
+        <p class="tf"><a class="ta" href="{{route('gen','Fantacies')}}">Fantacies</a></p>
+        <p class="tf"><a class="ta" href="{{route('gen','Horror')}}">Horror</a></p>
+        <p class="tf"><a class="ta" href="{{route('gen','History')}}">History</a></p> 
+ 
     </div>
 
-    <div class="nm">
-        <div class="uk">
-            <a href="">
-            <img src="{{ URL::asset('images/penny.jpg') }}" class="wel">
-            <div class="net">
-                <h1 class="title">The Barrons Betrayal</h1>
-                <p class="author">E.O Zyler</p>
-                <div class="sl">
-                    <p class="reviews">(<span>120</span> reviews)</p>
-                <p class="price">$050</p>
-                </div>
-                
-            </div>
-        
-        </a>
-        </div>
-        <div class="uk">
-            <a href="">
-            <img src="{{ URL::asset('images/f.jpg') }}" class="wel">
-            <div class="net">
-                <h1 class="title">The Barrons Betrayal</h1>
-                <p class="author">E.O Zyler</p>
-                <div class="sl">
-                    <p class="reviews">(<span>120</span> reviews)</p>
-                <p class="price">$7850</p>
-                </div>
-                
-            </div>
-        
-        </a>
-        </div>
-        <div class="uk">
-            <a href="">
-            <img src="{{ URL::asset('images/penny.jpg') }}" class="wel">
-            <div class="net">
-                <h1 class="title">The Barrons Betrayal</h1>
-                <p class="author">E.O Zyler</p>
-                <div class="sl">
-                    <p class="reviews">(<span>120</span> reviews)</p>
-                <p class="price">$050</p>
-                </div>
-                
-            </div>
-        
-        </a>
-        </div>
-        <div class="uk">
-            <a href="">
-            <img src="{{ URL::asset('images/f.jpg') }}" class="wel">
-            <div class="net">
-                <h1 class="title">The Barrons Betrayal</h1>
-                <p class="author">E.O Zyler</p>
-                <div class="sl">
-                    <p class="reviews">(<span>120</span> reviews)</p>
-                <p class="price">$7850</p>
-                </div>
-                
-            </div>
-        
-        </a>
-        </div>
-        <div class="uk">
-            <a href="">
-            <img src="{{ URL::asset('images/penny.jpg') }}" class="wel">
-            <div class="net">
-                <h1 class="title">The Barrons Betrayal</h1>
-                <p class="author">E.O Zyler</p>
-                <div class="sl">
-                    <p class="reviews">(<span>120</span> reviews)</p>
-                <p class="price">$050</p>
-                </div>
-                
-            </div>
-        
-        </a>
-        </div>
-        <div class="uk">
-            <a href="">
-            <img src="{{ URL::asset('images/f.jpg') }}" class="wel">
-            <div class="net">
-                <h1 class="title">The Barrons Betrayal</h1>
-                <p class="author">E.O Zyler</p>
-                <div class="sl">
-                    <p class="reviews">(<span>120</span> reviews)</p>
-                <p class="price">$78d50</p>
-                </div>
-                
-            </div>
-        
-            
-        </a>
-        </div>
+    <div class="book-flex">
+ 
+        @foreach ($books as $book )
+        <?php $image="BookImages/".$book['image'] ?>
        
+        <div class="book-entry bookies">
+<a href="{{route('sin',$book['id'])}}">
+          <img class="book-image" src="{{ URL::asset($image) }}" alt="Book Image 1">
+          <div class="book-info">
+            <h3 class="title">{{$book['title']}}</h3>
+             <p>{{$book['genre']}}</p>
+            <p class="author">{{$book['author']}} (<span>Uploaded by <a href="" style="color: red;"> {{$book->user['name']}}</a></span>)</p>
+          
+        </div>
+
+            <h2 class="price">Price:@if($book['price']=='') Free Download @else {{$book['price']}} @endif</h2>
+    </a>
+        </div>
+   
+        @endforeach
+       
+  
+   
+      </div>
+      <div class="pagination">
+        <span class="page-links">
+            {!! $books->links('vendor\pagination\default') !!}
+        </span>
     </div>
 </div>
 
@@ -400,6 +340,21 @@
 
 
 </div>
+
+<script defer>
+    let current="{{$type}}"
+   let ta=document.querySelectorAll(".ta")
+   
+   ta.forEach(el => {
+    el.parentElement.classList.remove('now')
+    if (el.innerHTML===current) {
+        el.parentElement.classList.add('now')
+    }
+   });
+   
+</script>
 @endsection
+
+
 </body>
 </html>
