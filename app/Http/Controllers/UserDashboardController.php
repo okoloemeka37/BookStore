@@ -16,6 +16,14 @@ class UserDashBoardController extends Controller
      
         return    view('user.dashboard',['post'=>$post,'book'=>$book]);
     }
+
+    function Normshow(){
+      $user=auth()->user();
+        $post=Posts::where("user_id", '=',$user->id)->count();
+        $book=Books::where("user_id", '=',$user->id)->count();
+     
+        return    view('normal.dashboard',['post'=>$post,'book'=>$book]);
+    }
    
   
 }

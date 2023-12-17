@@ -668,204 +668,137 @@ font-size: 43px;
 // styles for register and login form
 
 
-
-
-
-
-.registration-form form{
+.registration-container {
     background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-  
-    padding: 50px 70px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
-  }
-  
-  .registration-form .form-icon{
-  text-align: center;
-    background-color: #5891ff;
-    border-radius: 50%;
-    font-size: 40px;
-    color: white;
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    margin-bottom: 50px;
-    line-height: 100px;
-    
-  }
-  
-  .registration-form .item{
-  border-radius: 20px;
-    margin-bottom: 25px;
-    padding: 10px 20px;
-  }
-  
-  .registration-form .create-account{
-    border-radius: 30px;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #5791ff;
-    border: none;
-    color: white;
+.reg h2 {
+    text-align: center;
+    color: #333;
+}
+
+.reg form {
     margin-top: 20px;
-  }
-  
-  .registration-form .social-media{
-    max-width: 600px;
-    background-color: #fff;
-    margin: auto;
-    padding: 35px 0;
-    text-align: center;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    color: #9fadca;
-    border-top: 1px solid #dee9ff;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
-  }
-  
-  .registration-form .social-icons{
-    margin-top: 30px;
-    margin-bottom: 16px;
-  }
-  
-  .registration-form .social-icons a{
-    font-size: 23px;
-    margin: 0 3px;
-    color: #5691ff;
-    border: 1px solid;
-    border-radius: 50%;
-    width: 45px;
-    display: inline-block;
-    height: 45px;
-    text-align: center;
-    background-color: #fff;
-    line-height: 45px;
-  }
-  
-  .registration-form .social-icons a:hover{
-    text-decoration: none;
-    opacity: 0.6;
-  }
-  
-  @media (max-width: 576px) {
-    .registration-form form{
-        padding: 50px 20px;
-    }
-  
-    .registration-form .form-icon{
-        width: 70px;
-        height: 70px;
-        font-size: 30px;
-        line-height: 70px;
-    }
-  }
-  
-  .registration-form{
-  
-  width: 50%;
-  margin-left: 30%;
-  }
-  
-  .registration-form form{
-    background-color: #fff;
-    max-width: 600px;
-    margin: auto;
-    padding: 50px 70px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
-  }
-  
-  .registration-form .form-icon{
-  text-align: center;
-    background-color: #5891ff;
-    border-radius: 50%;
-    font-size: 40px;
-    color: white;
-    width: 100px;
-    height: 100px;
-    margin: auto;
-    margin-bottom: 50px;
-    line-height: 100px;
-  }
-  
-  .registration-form .item{
-  border-radius: 20px;
-    margin-bottom: 5px;
-    padding: 10px 20px;
-  }
-  
-  .registration-form .create-account{
-    border-radius: 30px;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #5791ff;
+}
+
+.reg label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.reg input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 3px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.signup, .login {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 12px;
     border: none;
-    color: white;
-    margin-top: 20px;
-  }
-  
-  .registration-form .social-media{
-    max-width: 600px;
-    background-color: #fff;
-    margin: auto;
-    padding: 35px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.signup:hover, .login:hover {
+    background-color: #1565C0;
+}
+
+.reg .login-link {
     text-align: center;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    color: #9fadca;
-    border-top: 1px solid #dee9ff;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
-  }
-  
-  .registration-form .social-icons{
-    margin-top: 30px;
-    margin-bottom: 16px;
-  }
-  
-  .registration-form .social-icons a{
-    font-size: 23px;
-    margin: 0 3px;
-    color: #5691ff;
-    border: 1px solid;
-    border-radius: 50%;
-    width: 45px;
-    display: inline-block;
-    height: 45px;
-    text-align: center;
-    background-color: #fff;
-    line-height: 45px;
-  }
-  
-  .registration-form .social-icons a:hover{
+    margin-top: 10px;
+}
+
+.reg .login-link a {
+    color: #2196F3;
     text-decoration: none;
-    opacity: 0.6;
-  }
-  
-  @media (max-width: 576px) {
-    .registration-form form{
-        padding: 50px 20px;
-    }
-  
-    .registration-form .form-icon{
-        width: 70px;
-        height: 70px;
-        font-size: 30px;
-        line-height: 70px;
-    }
-  }
-  .lg{
+}
+
+.reg .login-link a:hover {
+    text-decoration: underline;
+}
+.registration-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.image_fake_btn, #faker{
+    background-color: #0da4af;
+    cursor: pointer;
+    color: #fff;
+    padding: 5px 10px;
+border-radius: 10px;
+margin-bottom:10px ;
+display: block;
+text-align: center;
+transition: all .7s;
 margin-top: 10px;
-margin-left: 5%;
-  }
-  .lg a{
-    color: red;
-  }
+}
 
+.image_input,#Aimage_input{
+    visibility: hidden;
+}
+.prev,#Aprev{
+    margin-left: 35%;
+    display: none;
+    height:120px;
+    width: 120px;
+    border-radius: 50%;
+}
+.image_fake_btn:hover,#image_fake_btn:hover{
+    background-color: #064e53;
+}
+
+.register-user {
+    background-color: #6fb2fd;
+    cursor: pointer;
+    color: #fff;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+padding: 12px;
+flex: 1;
+border: none;
+   
+}
+
+.register-author {
+ cursor: pointer;
+    background-color: #6fb2fd;
+    color: #fff;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+padding: 12px;
+flex: 1;
+border: none;
+   
+}
+.active{
+    background-color: #0d59af;
+}
+.text-danger,.Atext-danger{
+    color: red;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.author_form{
+    display: none;
+}
 
   //end of reg and login form
 

@@ -9,8 +9,9 @@
     
     <li class="sb bg-lb"><a href="@if (auth()->user()->role =='Admin')
         {{route('dashboard')}}
-    @else
-    {{route('udashboard')}}
+    @elseif (auth()->user()->role =='Author')
+    {{route('AuthorDashboard')}}
+    @else  {{route('NormDashboard')}}
     @endif">Add Book</a></li>
     @endauth
     @guest

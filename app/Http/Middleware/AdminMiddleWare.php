@@ -15,7 +15,7 @@ class AdminMiddleware
         }
 
         // Redirect or display an error message for unauthorized access
-        return redirect()->route('home')->with('error', 'Unauthorized access');
+        return redirect()->route('home');
     }
 }
 

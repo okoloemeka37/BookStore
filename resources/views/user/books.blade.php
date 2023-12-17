@@ -13,7 +13,7 @@
     <h1>Admin Book Management</h1>
   </header>
   
-  @extends('user.sideNav')
+  @extends('all.sideNav')
 
   <p class="cu" name="Books"></p>
  

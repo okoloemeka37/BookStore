@@ -1,56 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body style=" background-color: #dee9ff;">
-	@vite(['resources/css/app.css','resources/sass/app.scss', 'resources/js/app.js'])
-    <div class="registration-form" >
+@extends('layouts.head')
 
-       
-        <form method="POST" action="{{route('login.form')}}">
+@section('Login')
+@endsection
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      
+    }
+</style>
+  
+  
+<body>
+	  @vite( ['resources/sass/app.scss'])
+
+
+    <div class="registration-container reg" >
+        <h2>Login TO Continue</h2>
+        <form method="POST" action="{{route('login_handle')}}">
             @csrf
-            <div class="form-icon">
-                <span><i class="icon icon-user"></i></span>
-            </div>
+          
             @if (session('error'))
             <p class="text-danger">{{session('error')}}</p>
         @endif
 
-            <div class="form-group">
-            <input type="email" class="form-control item" name="email" id="email" placeholder="Email" value="{{ old('email') }}" >
-                @error('email')
-                  <p class="text-danger"> {{$message}}</p> 
-                @enderror
-            </div>
-            <div class="form-group">
-               
-                <input type="password" class="form-control item" name="password" id="password" placeholder="Password">
-                @error('password')
-                <p class="text-danger"> {{$message}}</p> 
-              @enderror
-            </div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" ; @error('email') style=" border: 1px solid #ff0000;" @enderror value="{{old('twitter_link')}}">
+        @error('email')<p class="text-danger">{{$message}} </p>@enderror
+
+
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" @error('password') style=" border: 1px solid #ff0000;" @enderror >
+        @error('password')<p class="text-danger">{{$message}} </p>@enderror
           
-            <div class="form-group">
-                <button type="submit" class="btn btn-block w-100 create-account">LogIn</button>
-				<p class="lg">Don't Have An Account? <a href="{{route('register')}}">SignUp</a></p>
-            </div>
+        <button type="submit" class="login" id="f">Login</button>
+				
         </form>
-        <div class="social-media">
-            <h5>Sign up with social media</h5>
-            <div class="social-icons">
-                <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
-                <a href="#"><i class="icon-social-google" title="Google"></i></a>
-                <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
-            </div>
-        </div>
+         <div class="login-link">
+      Don't have an account? <a href="{{route('register')}}">signup here</a>
     </div>
+    </div>
+   
     
 </body>
 </html>

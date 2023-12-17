@@ -22,7 +22,14 @@ class User extends Authenticatable
         'email',
         'password',
         'image',
-        'role'
+        'role',
+        'author_description',
+        'fb_link',
+        'ig_link',
+        'twitter_link',
+        'phone',
+        'country',
+        'currency',
     ];
 
     /**
@@ -39,6 +46,9 @@ class User extends Authenticatable
     return $this->role === 'Admin'; 
 }
 
+public function isAuthor(){
+    return $this->role=== 'Author';
+}
 
     /**
      * The attributes that should be cast.

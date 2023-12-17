@@ -10,13 +10,30 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
-    function register(Request $request)  {
+
+
+
+
+    //getting users location with ip address
+
+          
+
+
+
+
+    function register_normal(Request $request)  {
+
+        
+
        $credentials=$request->validate([
         'name'=>['required','string'],
         'email'=>['required','email','unique:users,email'],
         'password'=>['required', Password::min(8)->letters()->symbols()],
         'image'=>['required','image','mimes:png,jpg,jpeg|max:2048'],
        ]);
+
+    
+
        
        $imageName = time().'.'.$request->image->extension();
        User::create([
@@ -24,8 +41,15 @@ class AuthController extends Controller
             'email'=> $credentials['email'],
             'password'=>bcrypt($credentials['password']),
             'image'=> $imageName,
-            'role'=>' '
-       ]);
+            'role'=>'norm',
+            'phone'=>' ',
+            'ig_link'=>' ',
+            'fb_link'=>' ',
+            'twitter_link'=>' ',
+            'author_description'=>' ',
+            'country'=>$request['country'],
+            'currency'=>$request['currency'],
+               ]);
 
        // Public Folder
        $request->image->move(public_path('uploaded'), $imageName);
@@ -34,14 +58,60 @@ class AuthController extends Controller
        Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']]);
 
        // Redirect to the dashboard or any other desired page
-       if(auth()->user()->role == 'Admin') {
-        return redirect()->route('dashboard');
-       }
-       else{
-        return redirect()->route('udashboard');
-       }
+      
+    
+        return redirect()->route('NormDashboard'); 
+       
        
     }
+
+
+
+    function register_author(Request $request)  {
+        trim($request->phone);
+        $credentials=$request->validate([
+         'Aname'=>['required','string'],
+         'Aemail'=>['required','email','unique:users,email'],
+         'Apassword'=>['required', Password::min(8)->letters()->symbols()],
+         'Aimage'=>['required','image','mimes:png,jpg,jpeg|max:2048'],
+         'phone'=>['required','regex:/^[0-9]+$/','max:9999999999'],
+         'ig_link'=>['required','url'],
+         'fb_link'=>['required','url'],
+         'twitter_link'=>['required','url'],
+         'author_description'=>['required','string']
+        ]);
+        
+        $imageName = time().'.'.$request->Aimage->extension();
+        User::create([
+             'name'=>$credentials['Aname'],
+             'email'=> $credentials['Aemail'],
+             'password'=>bcrypt($credentials['Apassword']),
+             'image'=> $imageName,
+             'role'=>'Author',
+             'phone'=>$credentials['phone'],
+             'ig_link'=>$credentials['ig_link'],
+             'fb_link'=>$credentials['fb_link'],
+             'twitter_link'=>$credentials['twitter_link'],
+             'author_description'=>$credentials['author_description'],
+             'country'=>$request['country'],
+            'currency'=>$request['currency'],
+        ]);
+ 
+        // Public Folder
+        $request->Aimage->move(public_path('uploaded'), $imageName);
+       
+ 
+        Auth::attempt(['email' => $credentials['Aemail'], 'password' => $credentials['Apassword']]);
+ 
+        // Redirect to the dashboard or any other desired page
+       
+     
+         return redirect()->route('AuthorDashboard');
+        
+        
+     }
+ 
+
 
 
     function login(Request $request) {
@@ -54,8 +124,10 @@ class AuthController extends Controller
             if(auth()->user()->role == 'Admin') {
                 return redirect()->route('dashboard');
                }
-               else{
-                return redirect()->route('udashboard');
+               else if(auth()->user()->role == 'Author'){
+                return redirect()->route('AuthorDashboard');
+               }else{
+                return redirect()->route('NormDashboard');
                }
            }else{
             return redirect()->route("login")->with(['error'=>"Wrong Credentials"]);

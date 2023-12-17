@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Upload Form</title>
   <style>
-  form {
+ #bookForm{
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -21,7 +21,7 @@
    
   @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
     
-  @extends('user.sideNav')
+  @extends('all.sideNav')
 
   @section('con')
  
@@ -180,7 +180,7 @@ ra.addEventListener('click',()=>{
  
 })
 
-// handling fakebtn image first .only one video is allowed
+// handling fakebtn image first .only one image is allowed
 
 document.querySelector(".aimg").addEventListener("click",()=>{
   document.querySelector("#BookImage").click();

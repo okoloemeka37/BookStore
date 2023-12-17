@@ -10,7 +10,7 @@
   @vite( ['resources/sass/Admin.scss'])
 
  
-  @extends('admin.sideNav')
+  @extends('all.sideNav')
 
   @section('con')
  

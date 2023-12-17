@@ -8,7 +8,7 @@
 </head>
 <body>
   @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
-  @extends('admin.sideNav')
+  @extends('all.sideNav')
 
   @section('con')
  

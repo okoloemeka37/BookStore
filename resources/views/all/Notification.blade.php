@@ -10,7 +10,7 @@ use Illuminate\Support\Carbon;?>
   <style>
 
     section {
-      width:=100%;
+    
  
       padding: 20px;
       background-color: #fff;
@@ -25,12 +25,16 @@ use Illuminate\Support\Carbon;?>
   </style>
 </head>
 <body>
+  @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
+
+
+
+  @extends('all.sideNav')
 
   <header>
     <h1>User Notifications</h1>
   </header>
-  @extends('user.sideNav')
-
+ 
 
   <p class="cu" name="Notification"></p>
 

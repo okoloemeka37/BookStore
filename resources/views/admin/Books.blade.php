@@ -14,7 +14,7 @@
     <h1>Admin Book Management</h1>
   </header>
   
-  @extends('admin.sideNav')
+  @extends('all.sideNav')
 
 
  

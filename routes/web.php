@@ -46,14 +46,14 @@ Route::post("/livesearch",[BooksController::class,"search"]);
 Route::get("/Notification",[NotificationController::class,'all'])->name('notice');
 
 Route::middleware(['admin'])->group(function(){
-    Route::get("/dashboard",[AdminDashBoardController::class,"show"])->name("dashboard");
+    Route::get("/AdminDashboard",[AdminDashBoardController::class,"show"])->name("dashboard");
     Route::get("/alusers",[AdminDashBoardController::class,'users'])->name("alusers");
     Route::delete("/delete_user/{id}",[AdminDashBoardController::class,'delete_user']);
 
 
 //books time
     Route::get("/Adminbook",[BooksController::class,"AdminBooks"])->name("AdminBooks");
-//removing books uploaded my norms;
+//removing books uploaded by others;
 
 Route::post("/removebook",[BooksController::class,"remove"]);
 
@@ -61,12 +61,15 @@ Route::post("/restore_book",[BooksController::class,"restore"]);
    
     
    });
- // working on normal users 
+ // working on Authors
+Route::middleware(['author'])->group(function(){
+    Route::get("/dashboard",[UserDashBoardController::class,'show'])->name("AuthorDashboard");
+ Route::get("/book",[BooksController::class,'user_show_books'])->name("Authorbook");
 
- Route::get("/udashboard",[UserDashBoardController::class,'show'])->name("udashboard");
- Route::get("/ubook",[BooksController::class,'user_show_books'])->name("ubook");
-
+});
  
+ //working on normal users
+ Route::get("/ndashboard",[UserDashBoardController::class,'Normshow'])->name("NormDashboard");
 
 
  Route::post("/logout",[AuthController::class,'logout'])->name('logout');
@@ -86,7 +89,8 @@ Route::middleware(['guest'])->group(function () {
         return view('Auths.Register');
     })->name("register");
 
-    Route::post("/register",[AuthController::class, 'register'])->name('form');
-   Route::post("/login",[AuthController::class,'login'])->name('login.form');
+    Route::post("/register",[AuthController::class, 'register_normal'])->name('register_handle');
+    Route::post("/Aregister",[AuthController::class, 'register_author'])->name('register_handle_author');
+   Route::post("/login",[AuthController::class,'login'])->name('login_handle');
 
 });
