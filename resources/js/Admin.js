@@ -22,7 +22,6 @@ nons.forEach(non => {
 
 
 
-
 if (document.querySelector("#genre")) {
 
     let genres=[

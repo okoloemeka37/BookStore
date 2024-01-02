@@ -65,10 +65,32 @@
 
     <label for="price">Price :(free <input type="checkbox" @if ($book->free=="true") checked @endif  class="cb" value={{$book->free}}  name="free"  > ) </label>
     <input type="text" class="vb" id="price" name="price" value="{{$book->price}}">
-    <p>{{$book->free}}</p>
+    
     @error("price")
     <p class="text-danger">{{$message}}</p>
   @enderror
+
+
+
+  
+  <label for="page">Number Of Pages</label>
+  <input type="text" class="vb" id="page" name="page" value="{{old('page')}}">
+  @error("page")
+  <p class="text-danger">{{$message}}</p>
+@enderror
+
+<label for="language">Language</label>
+<input type="text" class="vb" id="language" name="language" value="{{old('language')}}">
+@error("language")
+<p class="text-danger">{{$message}}</p>
+@enderror
+
+<label for="ISBN">ISBN</label>
+<input type="text" class="vb" id="ISBN" name="ISBN" value="{{old('ISBN')}}">
+@error("ISBN")
+<p class="text-danger">The ISBN field must be a number.</p>
+@enderror
+
 
 
     <label for="image">Image: <span class="imgErr" style="color: red;display:none;">Only 5 Images Are Allowed</span></label>

@@ -22,9 +22,12 @@ return new class extends Migration
             $table->string("author");
             $table->string("image");
             $table->string("genre");
-           
+            $table->string("ISBN");
+            $table->string("page");
+            $table->string("language");
             $table->string("free");
             $table->string("hard_copy");
+            $table->integer('num_download');
             $table->softDeletes();
             $table->timestamps();
         });

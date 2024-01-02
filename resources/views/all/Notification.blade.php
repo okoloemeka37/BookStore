@@ -1,5 +1,6 @@
-<?php
-use Illuminate\Support\Carbon;?>
+<?php use Illuminate\Support\Carbon;?>
+
+@extends('all.sideNav')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,29 +8,30 @@ use Illuminate\Support\Carbon;?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Notifications</title>
-  <style>
-
-    section {
-    
- 
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      color: #3498db;
-      margin-bottom: 20px
-    }
-
-  </style>
-</head>
-<body>
   @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
 
+</head>
+<style>
 
+  section {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-  @extends('all.sideNav')
+  h2 {
+    color: #3498db;
+    margin-bottom: 20px
+  }
+
+</style>
+<body>
+ 
+
+<form action="" method="post" >
+  @csrf
+</form>
+
 
   <header>
     <h1>User Notifications</h1>
@@ -45,19 +47,27 @@ use Illuminate\Support\Carbon;?>
 
 @foreach ($notice as $note)
 <?php $date=Carbon::parse($note->updated_at)?>
-@if ($note->for_text==="Book")
-<div class="notification @if ($note->status==='unchecked') blue @endif" >
-  <h3>Your Book, "{{$note->book_title}}"" was {{$note->type}} by <a href=""> The Admin</a></h3>
 
+
+<div class="notification chc @if ($note->status==='unchecked') blue @endif" id="{{$note->id}}" >
+
+ @if ($note->for_text==="Book")
   @if ($note->type==="Removed")
+  <h3>Your Book, <a href="{{route('s_deleted',$note['book_id'])}}" >"{{$note->book_title}}"</a> was {{$note->type}} by <a href="">{{$user[0]['name']}}</a></h3>
+
   <p>The Book Will Be Permanently Deleted After 30 Days</p>
   <a href="">click to see details</a>
+
+  @else
+  <h3>Your Book, <a href="{{route('sin',$note['book_id'])}}" >"{{$note->book_title}}"</a> was @if ($note->type==='comment') {{$note['description']}} @else {{$note->type}} @endif  by <a href="">{{$user[0]['name']}}</a></h3>
+
   @endif
  
   <p class="date">Received on:{{$date->toFormattedDateString()}}</p>
+  @endif
 </div>
   
-@endif
+
 
 
 @endforeach
@@ -67,6 +77,28 @@ use Illuminate\Support\Carbon;?>
       <p>No new notifications.</p>
     </div>
   </section>
+ 
 
+
+  <script>
+       let csrf=document.querySelectorAll("input")[0]
+       let chc=document.querySelectorAll(".notification");
+       chc.forEach(ele => {
+      ele.addEventListener('click',()=>{
+        let id=ele.id;
+        fetch("/check/"+id,{
+          method:"GET",
+          headers:{
+            'Content-Type':"application/json",
+                'X-CSRF-TOKEN':csrf.value
+          }
+        })
+        ele.classList.remove('blue')
+      })
+      
+       });
+       
+  </script>
 </body>
+
 </html>

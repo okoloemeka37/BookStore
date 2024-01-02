@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('twitter_link');
             $table->string('country');
             $table->string('currency');
+            $table->sting('liked_genres');
             $table->rememberToken();
             $table->timestamps();
         });

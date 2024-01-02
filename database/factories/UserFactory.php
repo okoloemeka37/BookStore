@@ -20,6 +20,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+    
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
@@ -27,8 +28,14 @@ class UserFactory extends Factory
             'password' => Hash::make('Secret'),
             'remember_token' => Str::random(10),
             'image'=>'1700004469.jpg',
-            'role'=>'norm'
-            
+            'role'=>'author',
+            'phone'=>fake()->phoneNumber(),
+            'author_description'=>fake()->text(),
+            'fb_link'=>fake()->url(),
+            'ig_link'=>fake()->url(),
+            'twitter_link'=>fake()->url(),
+            'country'=>fake()->country(),
+            'currency'=>fake()->currencyCode(),
 
         ];
     }

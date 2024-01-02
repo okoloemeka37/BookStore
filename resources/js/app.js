@@ -21,7 +21,15 @@ function myFunction() {
 }
 
 
+
+
+
+
+
+
 if (document.querySelectorAll(".flat")) {
+
+
   let counter=0;
 
   let current=0
@@ -246,5 +254,4 @@ if (counter == -1) {
   
   }
 },4000)
-
 

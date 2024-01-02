@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
        //  \App\Models\Posts::factory(100)->create(['image'=>'1700004469.jpg' ]);  
       \App\Models\Books::factory(30)->create(); 
 
-     // \App\Models\User::factory(40)->create(); 
+      //\App\Models\User::factory(20)->create(); 
     }
 }
 

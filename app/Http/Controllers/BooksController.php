@@ -6,13 +6,35 @@ use App\Models\Notification;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Storage;
-
-
+use App\Mail\addBook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 
 class BooksController extends Controller
 {
+
+    //individual books
+
+    function single($id){
+        $book=Books::where('id','=',$id)->with('user')->get();
+
+        return view('all.book',['book'=>$book,'message'=>'']);
+    } 
+
+    function s_deleted($id){
+        $book=Books::where('id','=',$id)->with('comment')->withTrashed()->with('user')->get();
+
+      
+        $note=Notification::where('book_id','=',$id)->get();
+return view('all.deleted_books',['book'=>$book,'note'=>$note]);
+
+    } 
+
+
+
+
+
     function AdminBooks(){
         //selecting All Books By Admin
         $adminBooks = Books::where("user_id","=",'1')->orderBy("id",'desc')->withTrashed()->get();
@@ -44,6 +66,9 @@ class BooksController extends Controller
     'image'=>'required|image',
     'pick'=>'required',
     'genre'=>'required|string',
+    'page'=>'required|numeric',
+    'ISBN'=>'required|numeric',
+    'language'=>'required|string',
     
 ]); 
 
@@ -93,20 +118,43 @@ $request['book']->move(public_path('Books'), $bookName);
         'link'=>$bookName,
         'user_id'=>auth()->user()->id,
         'genre'=>$request['genre'],
+        'page'=>$request['page'],
+        'ISBN'=>$request['ISBN'],
+        'language'=>$request['language'],
         'location'=>$location,
         'author'=>$request['author'],
         'image'=>$imageName,
         'free'=>$free,
-        'hard_copy'=>$copy
+        'hard_copy'=>$copy,
+        'num_download'=>0
     ]);
+    $data=[
+        'subject'=>"A new Book Was Added",
+        'title'=>$request['bookName'],
+        'description'=>$request['description'],
+        'author'=>$request['author'],
+        'genre'=>$request['genre'],
+       ];
+
+       $us=User::where("liked_genres",'!=','')->get();
+       foreach($us as $user){
+       
+$likes=json_decode($user['liked_genres']);
+if(in_array($request->genre,$likes)){
+    Mail::to($user['email'])->send(new addBook($data));
+}
+$rt='tr';
+       }
+
+       
 
 
 
    //selecting All Books By Admin
-   if(auth()->user()->id ===0){
+   if(auth()->user()->id ===1){
     return redirect()->route('AdminBooks')->with('success', 'Book Added successfully.');
    }else{
-    return redirect()->route('ubook')->with('success', 'Book Added successfully.');
+    return redirect()->route('Authorbook')->with('success', 'Book Added successfully.');
    }
     }
 
@@ -132,7 +180,9 @@ $request['book']->move(public_path('Books'), $bookName);
             'image'=>'nullable|image',
             'pick'=>'required',
             'genre'=>'required|string',
-            
+            'page'=>'required|numeric',
+    'ISBN'=>'required|numeric',
+    'language'=>'required|string',
         ]); 
        
         if($request['free']===NULL){
@@ -211,8 +261,11 @@ $bookFound=Books::find($id);
         'description'=>$request['description'],
         'price'=>$price,
         'link'=>$book,
-        'user_id'=>auth()->user()->id,
+        
         'genre'=>$request['genre'],
+        'page'=>$request['page'],
+        'ISBN'=>$request['ISBN'],
+        'language'=>$request['language'],
         'location'=>$location,
         'author'=>$request['author'],
         'image'=>$image,
@@ -220,18 +273,18 @@ $bookFound=Books::find($id);
         'hard_copy'=>$copy
     ]);
 
-    if(auth()->user()->id ===0){
+    if(auth()->user()->id ===1){
         return redirect()->route('AdminBooks')->with('success', 'Book Added successfully.');
        }else{
-        return redirect()->route('ubook')->with('success', 'Book Added successfully.');
+        return redirect()->route('Authorbook')->with('success', 'Book Added successfully.');
        }
     }
-
+// force deleting 
 
     function delete_book($id){
       $book= Books::withTrashed()->find($id);
       
-     if($book->user_id===auth()->user()->id){
+     if($book["user_id"]==auth()->user()->id){
 
      }else{
         Notification::create([
@@ -262,7 +315,7 @@ $imagePath=public_path("BookImages/".$book['image']);
 
 
 
-    //remove norms book
+    //soft deleting norms book
 
     function remove(Request $request){
         $jsonData = json_decode($request->getContent(), true);
@@ -301,7 +354,7 @@ $imagePath=public_path("BookImages/".$book['image']);
        Notification::create([
         'from_id'=>auth()->user()->id,
         'user_id'=>$book['user_id'],
-        'subject'=>$book_id,
+        'book_id'=>$book_id,
         'description'=>"Your Book".$book['title']. "Was Restored",
         'status'=>"unchecked",
         'type'=>'Removed',

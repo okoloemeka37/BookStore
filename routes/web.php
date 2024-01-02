@@ -6,6 +6,11 @@ use App\Http\Controllers\UserDashBoardController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\IndexPageController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\paymentController;
+use App\Http\Controllers\CommmentController;
+use App\Http\Controllers\RatingsController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,16 +27,78 @@ use Illuminate\Support\Facades\Route;
 for pagination:: php artisan vendor:publish --tag=laravel-pagination
 */
 
+
+
+
+//payment system
+Route::post('/pay',[paymentController::class,'pay'])->name('pay');
+Route::get('/boo/{id}',[paymentController::class,'success'])->name('ret');
+Route::get('/error',[paymentController::class,'error']);
+
+//COMMENT SECTION
+Route::post("/Add_comment",[CommmentController::class,'save']);
+Route::get("/get_comment/{id}",[CommmentController::class,'get']);
+Route::post("/edit_comment",[CommmentController::class,'edit']);
+Route::delete("/delete_comment/{id}",[CommmentController::class,'delete']);
+
+
+
+//RATNG SECTION
+Route::post("/add_rating",[RatingsController::class,'add']);
+Route::get("/p_get_rating/{id}",[RatingsController::class,'p_rating']);
+Route::get("/other_rating/{id}",[RatingsController::class,'other_rating']);
+
+
+//EMAIL SECTION
+Route::get("/bos/{id}",[MailController::class,'sendDownloadMail'])->name('sdm');
+
+
+
+
 Route::get('/',[IndexPageController::class,'index'])->name("home");
 Route::get('/sort{genre}',[IndexPageController::class,'index'])->name("gen");
-//viewing single book 
-Route::get('/book{id}',[IndexPageController::class,'single'])->name("sin");
 
-   
-   
+
+//showing all books by a particular author
+Route::get('/Author{id}',[IndexPageController::class,'SortAuth'])->name("sortAuth");
+
+
+
+//live search
+Route::post("/live",[IndexPageController::class,'live'])->name('live');
+
+//ind_genre
+Route::get("/genre{gen}",[IndexPageController::class, 'genre'])->name('genre');
 
 Route::middleware(['auth'])->group(function () {
+    
+//report page
+Route::get('/reportConsole/{type}/{id}',[ReportController::class,'index'])->name('report_index');
+Route::post('/reportstore',[ReportController::class,'store'])->name('report_store');
+
+
+
+
+
+
+
   
+    //editing user profile
+
+    Route::get('/editProfile',function(){
+return view('Auths.profile_edit');
+    })->name('profile_edit');
+
+    Route::put("editProfile{id}",[AuthController::class,'edit'])->name('editProfile_handle');
+
+    Route::get("/emailConfirmation",[AuthController::class,'codeSend'])->name('confirm_email');
+    Route::post("/codeCheck",[AuthController::class,'codeCheck'])->name('codeCheck');
+
+    Route::get("/password_change_view/{token}",[AuthController::class,'pass_view'])->name("pass_view");
+
+    Route::post("/password_change",[AuthController::class,'password_change'])->name('p_change_handle');
+
+
     // anyAuth can access this route
     //working with book page
 Route::post('/storeBook', [BooksController::class,'store'])->name('storeBook');
@@ -42,10 +109,37 @@ Route::put('/editBook/{id}', [BooksController::class,'update'])->name('editBook'
 Route::post("/livesearch",[BooksController::class,"search"]);
 
 
+
+//viewing single book 
+Route::get('/book/{id}',[BooksController::class,'single'])->name("sin");
+
+
+//showing soft deleted books
+Route::get('/deletedbook/{id}',[BooksController::class,'s_deleted'])->name("s_deleted");
+
+
+
+
 //working with notification page
 Route::get("/Notification",[NotificationController::class,'all'])->name('notice');
+Route::get("/check/{id}",[NotificationController::class,'check']);
+
+
+
+Route::get("/settings",function(){
+    return view('all.Settings');
+})->name('setting');
+
+
 
 Route::middleware(['admin'])->group(function(){
+    //showing report page
+    Route::get('/reportshow',[ReportController::class,'show'])->name('report_show');
+    Route::get('/clear_report',[ReportController::class,'clear'])->name('clear_report');
+    Route::Delete('/remove_report/{id}',[ReportController::class,'remove']);
+   // /remove_report/
+
+
     Route::get("/AdminDashboard",[AdminDashBoardController::class,"show"])->name("dashboard");
     Route::get("/alusers",[AdminDashBoardController::class,'users'])->name("alusers");
     Route::delete("/delete_user/{id}",[AdminDashBoardController::class,'delete_user']);
@@ -73,7 +167,11 @@ Route::middleware(['author'])->group(function(){
 
 
  Route::post("/logout",[AuthController::class,'logout'])->name('logout');
+    
+    // becoming An Author show
 
+    Route::get("/beAuthor",[AuthController::class,'BeAuthShow'])->name('BeAuthShow');
+    Route::put("/beAuthor{id}",[AuthController::class,'BeAuthHandle'])->name('BeAuthHandle');
  
 });
 

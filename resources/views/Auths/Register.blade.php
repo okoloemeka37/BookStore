@@ -22,8 +22,7 @@ $currency=$ip_data->geoplugin_currencyCode;
 
 @extends('layouts.head')
 
-@section('Register')
-@endsection
+
 <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -40,6 +39,7 @@ $currency=$ip_data->geoplugin_currencyCode;
   
 
 </head>
+
 <body>
     <div class="registration-container reg">
         <h2>User Registration</h2>

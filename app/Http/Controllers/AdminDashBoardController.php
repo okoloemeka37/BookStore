@@ -5,6 +5,7 @@ use App\Models\Posts;
 use App\Models\Books;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,8 +15,11 @@ class AdminDashBoardController extends Controller
         $user=Auth::user();
         $post=Posts::count();
         $book=Books::count();
+        $report=Report::count();
         $norm=User::where("role" ,"!=" ,"Admin")->count();
-        return    view('admin.dashboard',['user'=>$user,'post'=>$post,'book'=>$book,'norm'=>$norm]);
+        $note=Notification::where('user_id','=',$user->id)->where("status" ,"=" ,"unchecked")->count();
+        
+        return    view('admin.dashboard',['user'=>$user,'post'=>$post,'book'=>$book,'norm'=>$norm,'note'=>$note,'report'=>$report]);
     }
     function users(){
         $user=Auth::user();
@@ -34,4 +38,3 @@ class AdminDashBoardController extends Controller
         return response()->json(["message"=>"User Deleted"]);
     }
 }
-//Miss Orie Kiehn MD

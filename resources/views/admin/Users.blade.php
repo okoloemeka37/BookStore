@@ -39,6 +39,7 @@
             <th>Email</th>
             <th>Blogs</th>
             <th>Books</th>
+            <th>country</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -51,10 +52,11 @@
        
        <tr class="us">
          <td>{{$id++}}</td>
-         <td class="name">{{$user['name']}}</td>
+         <td class="name"><a href="{{route('sortAuth',$user->id)}}" style="color: red;">{{$user['name']}}</a></td>
          <td class="email">{{$user['email']}}</td>
         <td><a href="#">{{$user['posts_count']}}</a></td>
        <td><a href=""> {{$user['books_count']}} </a></td>
+       <td><a href=""> {{$user['country']}} </a></td>
          <td class="user-actions">
            <button class="ws">Email</button>
            <button class="red" ct={{$user["id"]}}>Delete</button>

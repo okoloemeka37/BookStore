@@ -14,7 +14,7 @@
   </header>
   
   @extends('all.sideNav')
-
+  @vite( ['resources/sass/Admin.scss','resources/js/Admin.js']) 
   <p class="cu" name="Books"></p>
  
 

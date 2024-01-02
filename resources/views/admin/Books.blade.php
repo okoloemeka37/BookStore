@@ -42,6 +42,7 @@
  
       @foreach ($adminBook as $book )
       <?php $image="BookImages/".$book['image'] ?>
+      <a href="{{route('sin',$book['id'])}}">
       <div class="book-entry bookies">
         <img class="book-image" src="{{ URL::asset($image) }}" alt="Book Image 1">
         <div class="book-info">
@@ -53,7 +54,7 @@
           <button class="delete" ct={{$book->id}} >Delete</button>
         </div>
       </div>
-
+      </a>
       @endforeach
     
       <form action="">
@@ -94,7 +95,13 @@
 
     @foreach ($norms as $book )
     <?php $image="BookImages/".$book['image'] ?>
+   
     <div class="book-entry-norms bookies">
+      <a href="@if ($book['deleted_at'] != NULL)
+      {{route('s_deleted',$book['id'])}}
+        @else
+        {{route('sin',$book['id'])}}
+      @endif">
       @if ($book['deleted_at'] != NULL)
       <div class="blur"><p>You Deleted This Book</p></div>        
       @endif 
@@ -102,7 +109,7 @@
       <img class="book-image" src="{{ URL::asset($image) }}" alt="Book Image 1">
       <div class="book-info">
         <h3 class="title">{{$book['title']}} (<i class="genre">{{$book['genre']}}</i>)</h3>
-        <p class="author">{{$book['author']}}(<span>Uploaded by <a href="" style="color: red;">{{$book->user['name']}}</a></span>)<p>
+        <p class="author">{{$book['author']}}(<span>Uploaded by <a href="{{route('sortAuth',$book->user_id)}}" style="color: red;">{{$book->user['name']}}</a></span>)<p>
     
     
       </div>
@@ -120,9 +127,9 @@
     </div> 
         
         
-      
+        </a>
     </div>
-
+  
     @endforeach
     
 

@@ -1,31 +1,29 @@
+@extends('all.sideNav')
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Upload Form</title>
-  <style>
- #bookForm{
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  
-  </style>
+    @vite( ['resources/js/Admin.js'])
 </head>
+<style>
+  #bookForm{
+     max-width: 600px;
+     margin: 50px auto;
+     padding: 20px;
+     background-color: #fff;
+     border-radius: 5px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   }
+ 
+   
+   </style>
 <body>
    
-  @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
-    
-  @extends('all.sideNav')
 
-  @section('con')
- 
-  @endsection
+
+
 
   <p class="cu" name="AddBooks"></p>
     <header><h2>AddBook</h2></header>
@@ -67,11 +65,30 @@
     <p class="text-danger">{{$message}}</p>
   @enderror
 
-    <label for="price">Price :(free <input type="checkbox" class="cb" value=false name="free"  > ) </label>
+    <label for="price">Price In  :(free <input type="checkbox" class="cb" value=false name="free"  > ) </label>
     <input type="text" class="vb" id="price" name="price" value="{{old('price')}}">
     @error("price")
     <p class="text-danger">{{$message}}</p>
   @enderror
+
+
+  <label for="page">Number Of Pages</label>
+  <input type="text" class="vb" id="page" name="page" value="{{old('page')}}">
+  @error("page")
+  <p class="text-danger">{{$message}}</p>
+@enderror
+
+<label for="language">Language</label>
+<input type="text" class="vb" id="language" name="language" value="{{old('language')}}">
+@error("language")
+<p class="text-danger">{{$message}}</p>
+@enderror
+
+<label for="ISBN">ISBN</label>
+<input type="text" class="vb" id="ISBN" name="ISBN" value="{{old('ISBN')}}">
+@error("ISBN")
+<p class="text-danger">The ISBN field must be a number.</p>
+@enderror
 
 
     <label for="image">Image: <span class="imgErr" style="color: red;display:none;">Only 5 Images Are Allowed</span></label>
@@ -134,28 +151,24 @@
 
   <script>
 
-document.querySelector("#upload").addEventListener('click',function(e) {
-        if (document.querySelector("#location").value === ' ') {
-          e.preventDefault();
-          document.querySelector("#mina").style.display="block"
-        }
-      })
 
 
-let cb =document.querySelector(".cb");
+
+let cb =document.querySelector(".cb")
 cb.addEventListener('click',function () {
+
      if (cb.value==true) {
         let ncb= document.querySelector(".cb")
    
     document.querySelector(".cb").value=false
-    console.log(document.querySelector(".cb"))
+  
            // add price input
     document.querySelector("#price").style.display='block';
      }else{
         let ncb= document.querySelector(".cb")
    
    document.querySelector(".cb").value=true
-   console.log(document.querySelector(".cb"))
+  
    // remove price input
    document.querySelector("#price").style.display='none';
      }

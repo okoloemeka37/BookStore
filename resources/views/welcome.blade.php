@@ -3,10 +3,21 @@
 
 @section('title') BookLib @endsection
 
-
+@vite( ['resources/js/app.js'])
 
 @section('content')
-<script src="{{ URL::asset('script/index.js') }} "defer></script>
+
+
+{{--search bar result--}}
+<p class="cs">  @csrf</p>
+
+<div id="search-results">
+
+</div>
+
+
+
+
 
 <div class="hold">
 <div class="flat fade" style="background-image:url({{ URL::asset('images/front.jpg') }})">
@@ -281,7 +292,7 @@
 <div class="lpi">
     <div class="df">
 
-        <p class="tf now"><a class="ta" href="{{route('gen','All')}}">All</a></p>
+        <p class="tf now"><a class="ta" href="{{route('gen','null')}}">All</a></p>
         <p class="tf"><a class="ta" href="{{route('gen','Poetry')}}">Poetry</a></p>
        <p class="tf"><a class="ta" href="{{route('gen','Nonfiction')}}">Nonfiction</a></p>
        <p class="tf"><a class="ta" href="{{route('gen','Drama')}}">Drama</a></p>
@@ -306,11 +317,11 @@
           <div class="book-info">
             <h3 class="title">{{$book['title']}}</h3>
              <p>{{$book['genre']}}</p>
-            <p class="author">{{$book['author']}} (<span>Uploaded by <a href="" style="color: red;"> {{$book->user['name']}}</a></span>)</p>
+            <p class="author">{{$book['author']}} (<span>Uploaded by <a href="{{route('sortAuth',$book->user_id)}}" style="color: red;"> {{$book->user['name']}}</a></span>)</p>
           
         </div>
 
-            <h2 class="price">Price:@if($book['price']=='') Free Download @else {{$book['price']}} @endif</h2>
+            <p class="price">Price:@if($book['price']=='') <span style=" color:skyblue"> Free Download </span>@else {{$book['price']}} @endif</p>
     </a>
         </div>
    

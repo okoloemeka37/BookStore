@@ -12,7 +12,8 @@ class Books extends Model
     use HasFactory;
 
     protected $fillable=[
-            'title','description','price','link','user_id','genre','location','author','image','free','hard_copy'
+            'title','description','price','link','user_id','genre','location','author','image','free','hard_copy',
+            'page','language','ISBN','num_download'
     ];
 
 
@@ -24,6 +25,9 @@ class Books extends Model
 
     function notice(){
         return $this->hasMany(Notification::class);
+    }
+    function comment(){
+        return $this->hasMany(comments::class);
     }
 }
 

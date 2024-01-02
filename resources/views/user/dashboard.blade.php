@@ -26,17 +26,16 @@
     
     <div class="dashboard-summary">
       <div class="summary-box">
-        <h3>Downloads</h3>
-        <p>300</p>
+        <h3><a href="{{route('Authorbook')}}">Books</a></h3>
+        <p>{{$book}}</p>
       </div>
-
       <div class="summary-box">
         <h3>Posts</h3>
         <p> {{$post}}</p>
       </div>
 
       <div class="summary-box">
-        <h3>Books</h3>
+        <h3> <a href="{{route('notice')}}">Notification</a></h3>
         <p>{{$book}}</p>
       </div>
     </div>

@@ -1,18 +1,20 @@
+@extends('all.sideNav')
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
-<link rel="stylesheet" href="stle.css">
+
+  @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
 </head>
 <body>
-  @vite( ['resources/sass/Admin.scss','resources/js/Admin.js'])
-  @extends('all.sideNav')
 
-  @section('con')
+
+
+  @section('content')
  
-  @endsection
+
     <header>
 <h2>DashBoard</h2>
    
@@ -23,7 +25,7 @@
   <section>
     <div class="dashboard-summary">
       <div class="summary-box">
-        <h3>Users</h3>
+        <h3><a href="{{route('alusers')}}">Users</a></h3>
         <p>{{$norm}} </p>
       </div>
 
@@ -33,9 +35,20 @@
       </div>
 
       <div class="summary-box">
-        <h3>Books</h3>
+        <h3>  <a href="{{route('AdminBooks')}}">Books</a></h3>
         <p>{{$book}}</p>
       </div>
+
+      <div class="summary-box">
+        <h3><a href="{{route('notice')}}">Notification</a> </h3>
+        <p>{{$note}}</p>
+      </div>
+
+      <div class="summary-box">
+        <h3> <a href="{{route('report_show')}}">Reports</a></h3>
+        {{$report}}
+      </div>
+
     </div>
 
     <div class="graph-container">
@@ -81,6 +94,6 @@
       </table>
     </div>
   </section>
-
+  @endsection
 </body>
 </html>

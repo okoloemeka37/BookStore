@@ -545,3 +545,36 @@ position: absolute;
 .blue{
   background-color: rgb(37, 137, 231);
 }
+
+
+//report section
+
+
+.report-section {
+  margin-bottom: 20px;
+}
+
+.report-list {
+  list-style: none;
+  padding: 0;
+}
+
+.report-item {
+  border: 1px solid #bdd7e2; /* Lighter Blue */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.report-details {
+  margin-bottom: 10px;
+}
+
+.additional-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.reason, .date {
+  color: #555;
+}

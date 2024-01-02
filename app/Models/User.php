@@ -30,6 +30,7 @@ class User extends Authenticatable
         'phone',
         'country',
         'currency',
+        'liked_genres'
     ];
 
     /**
@@ -47,7 +48,7 @@ class User extends Authenticatable
 }
 
 public function isAuthor(){
-    return $this->role=== 'Author';
+    return $this->role == 'Author';
 }
 
     /**
