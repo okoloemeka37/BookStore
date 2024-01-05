@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('notifications',function(Blueprint $table){
                     $table->id();
                     $table->string('from_id');
-                    $table->string('user_id');
-                    $table->string('book_id');
+                    $table->foreignId('user_id')->contrained()->onDelete('cascade');
+                    $table->foreignId('book_id')->contrained()->onDelete('cascade');
                     $table->string('description');
                     $table->string("status");
                     $table->string('type');

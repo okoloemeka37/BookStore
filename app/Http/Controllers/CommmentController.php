@@ -21,7 +21,7 @@ class CommmentController extends Controller
     'title'=>'required'
 ]);
         comments::create([
-            'books_id'=>$data['book_id'],
+            'book_id'=>$data['book_id'],
             'user_id'=>auth()->user()->id,
             'parent_id'=>$data['parent_id'],
             'content'=>$data['content'],
@@ -43,9 +43,9 @@ class CommmentController extends Controller
     function get($id){
         $gmt=''; 
         $ngt='';
-        $data=comments::where("books_id",'=',$id)->where('parent_id','=',0)->orderBy("id",'DESC')->with('user')->get();
+        $data=comments::where("book_id",'=',$id)->where('parent_id','=',0)->orderBy("id",'DESC')->with('user')->get();
         foreach($data as $dat){
-            $rep=comments::where("books_id",'=',$id)->where('parent_id','=',[$dat['id']])->with('user')->get();
+            $rep=comments::where("book_id",'=',$id)->where('parent_id','=',[$dat['id']])->with('user')->get();
             $img=$dat['user']['image'];
         $frt=' <div class="comment">
         <div class="comment-author"><img src="http://127.0.0.1:8000/uploaded/'.$img.' " class="pp" alt="">'. $dat['user']['name'].' </div>

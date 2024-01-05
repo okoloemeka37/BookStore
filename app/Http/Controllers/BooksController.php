@@ -10,6 +10,7 @@ use App\Mail\addBook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
+// {!! $books->links('vendor\pagination\default') !!}
 
 class BooksController extends Controller
 {

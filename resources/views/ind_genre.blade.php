@@ -46,7 +46,7 @@
   </div>
   <div class="pagination">
     <span class="page-links">
-        {!! $books->links('vendor\pagination\default') !!}
+        {!! $books->links('vendor.pagination.default') !!}
     </span>
 </div>
 

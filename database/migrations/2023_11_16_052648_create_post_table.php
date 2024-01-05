@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');      
-          
             $table->string("image");
-            $table->integer("user_id");
+            $table->foreignId('user_id')->contrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

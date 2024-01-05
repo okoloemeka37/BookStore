@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->integer("user_id");
+            $table->foreignId('user_id')->contrained()->onDelete('cascade');
             $table->integer("rate");
-            $table->integer('book_id');
+            $table->foreignId('book_id')->contrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
