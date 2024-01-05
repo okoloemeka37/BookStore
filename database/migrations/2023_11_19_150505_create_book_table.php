@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('link'); 
             $table->text('description'); 
             $table->string("price");
-            $table->integer('user_id');
+            $table->foreignId('user_id')->contrained()->onDelete('cascade');
             $table->string("location");     
             $table->string("author");
             $table->string("image");
